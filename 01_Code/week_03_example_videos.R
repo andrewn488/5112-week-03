@@ -190,3 +190,9 @@ grid.arrange(
 # multivariate EDA
 cor(week02_tidy$female_weight, week02_tidy$female_height, use = "complete.obs")
 ggpairs(week02_tidy, columns = c("female_age", "female_weight", "female_height", "edu_yrs"))
+
+
+#-------------------------------------------
+# stats review - Central Limit Theorem
+
+
