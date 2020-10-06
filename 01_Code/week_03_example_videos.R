@@ -170,10 +170,23 @@ summary(week02_tidy)
 # categorical data - tabulation
 week02_tidy %>% 
   rename(type_place = hv025) %>% 
-  group_by(type_place, female) %>% 
+  group_by(type_place, female) %>%            # organize data by female
   summarise(count = n(),
             percent = (sum(count) / nrow(week02_tidy)) * 100, 
             mean_age = mean(female_age, na.rm = TRUE),
             mean_female_height = mean(female_height, na.rm = TRUE),
             mean_female_weight = mean(female_weight, na.rm = TRUE)
             )
+
+# univariate graphing
+grid.arrange(
+  ggplot(week02_tidy, aes(x = 1, y = female_age)) +  
+  geom_boxplot(),
+  ggplot(week02_tidy, aes(x = 2, y = edu_yrs)) + 
+  geom_boxplot(),
+  ncol = 2
+)
+
+# multivariate EDA
+cor(week02_tidy$female_weight, week02_tidy$female_height, use = "complete.obs")
+ggpairs(week02_tidy, columns = c("female_age", "female_weight", "female_height", "edu_yrs"))
